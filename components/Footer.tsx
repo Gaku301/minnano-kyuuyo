@@ -1,7 +1,7 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Image from 'next/image'
 
-const Footer = () => {
+const Footer = (): ReactElement => {
   return (
     // <footer className={styles.footer}>
     <footer className="flex h-24 w-full items-center justify-center border-t">

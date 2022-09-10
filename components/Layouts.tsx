@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { ReactElement, ReactNode } from "react"
 import Head from "next/head"
 import Footer from "./Footer"
 
@@ -6,7 +6,7 @@ type Props = {
   children?: ReactNode;
 }
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ children }: Props): ReactElement => {
   return (
     <>
       <Head>
