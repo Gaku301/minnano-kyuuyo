@@ -67,7 +67,7 @@ const Home: NextPage = () => {
         {/* Chart Box */}
         <div className="mt-6 w-full rounded-xl border p-6 text-left my-10 shadow-lg">
           <h2 className="text-2xl font-bold">年齢別の平均給与</h2>
-          <Chart year={select_val}/>
+          <Chart year={select_val} is_devided={checked}/>
         </div>
       </div>
     </>

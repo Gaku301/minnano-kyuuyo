@@ -14,7 +14,8 @@ import { Bar } from "react-chartjs-2";
 import KyuuyoData from "../utils/Data"
 
 interface Props {
-  year: string
+  year: string,
+  is_devided: boolean
 }
 
 ChartJS.register(
@@ -28,9 +29,8 @@ ChartJS.register(
   ChartDataLabels
 );
 
-export default function Chart({ year }: Props): JSX.Element {
-  // chat data
-  const chartData = KyuuyoData[year] ?? [];
+export default function Chart({ year, is_devided }: Props): JSX.Element {
+
   // chart option
   const options = {
     layout: {padding: 50},
@@ -91,29 +91,43 @@ export default function Chart({ year }: Props): JSX.Element {
     '70歳以上'
   ];
 
-  const data = {
-    labels,
-    datasets: [
-      // {
-      //   label: '男性',
-      //   data: [146, 277, 393, 458, 518, 571, 621, 656, 668, 521, 421, 357],
-      //   borderColor: 'rgb(53, 162, 235)',
-      //   backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      // },
-      // {
-      //   label: '女性',
-      //   data: [115, 242, 319, 309, 311, 317, 321, 319, 311, 257, 208, 191],
-      //   borderColor: 'rgb(255, 99, 132)',
-      //   backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      // },
+  // chart datas
+  let datasets = [];
+  if (is_devided) {
+    const manData = KyuuyoData[year]['man'] ?? [];
+    const womanData = KyuuyoData[year]['woman'] ?? [];
+    // 男女で分ける
+    datasets = [
+      {
+        label: '男性',
+        data: manData,
+        borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      },
+      {
+        label: '女性',
+        data: womanData,
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      },
+    ];
+  } else {
+    const chartData = KyuuyoData[year]['all'] ?? [];
+    // 平均給与
+    datasets = [
       {
         label: '平均給与',
         data: chartData,
         borderColor: '#fb923c',
         backgroundColor: 'rgba(251, 146, 60, 0.7)',
         borderWidth: 2
-      },
-    ],
+      }
+    ];
+  }
+
+  const data = {
+    labels,
+    datasets: datasets,
   };
 
   return <Bar options={options} data={data} />;
