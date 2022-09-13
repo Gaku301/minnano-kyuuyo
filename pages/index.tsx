@@ -4,7 +4,8 @@ import Chart from "../components/Chart";
 import CheckBox from "../components/CheckBox";
 
 const Home: NextPage = () => {
-  const [select_val, setSelectVal] = useState<String>('2022');
+  const [select_val, setSelectVal] = useState<string>('2022');
+  const [checked, setChecked] = useState<boolean>(false);
   const years = [];
   for (let index = 2022; index > 2000; index--) {
     years.push(index);
@@ -12,7 +13,10 @@ const Home: NextPage = () => {
 
   const selectHandle = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectVal(e.target.value);
-    console.log(select_val);
+  }
+
+  const checkboxHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(e.target.checked);
   }
 
   return (
@@ -36,6 +40,7 @@ const Home: NextPage = () => {
               <select 
                 id="year_select"
                 className="block w-full mt-0 px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-orange-400 bg-gray-100"
+                value={select_val}
                 onChange={(e) => selectHandle(e)}
               >
                 {years.map((year, index) => <option value={year} key={index}>{`${year}年`}</option>)}
@@ -48,8 +53,9 @@ const Home: NextPage = () => {
                 <input 
                   id="all-checkbox" 
                   type="checkbox" 
-                  value="" 
                   className="bg-gray-50 border border-gray-300 rounded text-orange-400 focus:ring-orange-400 focus:border-orange-400 w-6 h-6 cursor-pointer" 
+                  checked={checked}
+                  onChange={(e) => checkboxHandle(e)}
                 />
                 <label htmlFor="all-checkbox" className="ml-2 mb-1 font-medium cursor-pointer">男性・女性で分ける</label>
               </div>
@@ -60,8 +66,8 @@ const Home: NextPage = () => {
 
         {/* Chart Box */}
         <div className="mt-6 w-full rounded-xl border p-6 text-left my-10 shadow-lg">
-          <h2 className="text-2xl font-bold">検索</h2>
-          <Chart />
+          <h2 className="text-2xl font-bold">年齢別の平均給与</h2>
+          <Chart year={select_val}/>
         </div>
       </div>
     </>
