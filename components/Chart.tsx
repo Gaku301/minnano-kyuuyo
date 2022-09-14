@@ -43,7 +43,7 @@ export default function Chart({ year, is_devided }: Props): JSX.Element {
     plugins: {
       title: {
         display: true,
-        text: `${year}年`,
+        text: `${year}年（${KyuuyoData[year.toString()]['wareki']}）`,
         font: {size: 20}
       },
       datalabels: {

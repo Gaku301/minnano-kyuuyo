@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import type { NextPage } from "next";
 import Chart from "../components/Chart";
-import CheckBox from "../components/CheckBox";
+import KyuuyoData from "../utils/Data";
 
 const Home: NextPage = () => {
-  const [select_val, setSelectVal] = useState<string>('2022');
+  const [select_val, setSelectVal] = useState<string>('2020');
   const [checked, setChecked] = useState<boolean>(false);
   const years = [];
-  for (let index = 2022; index > 2000; index--) {
-    years.push(index);
+  for (let index = 2020; index > 1998; index--) {
+    const year = {
+      'year': index,
+      'wareki': KyuuyoData[index.toString()]['wareki']
+    }
+    years.push(year);
   }
 
   const selectHandle = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -43,7 +47,7 @@ const Home: NextPage = () => {
                 value={select_val}
                 onChange={(e) => selectHandle(e)}
               >
-                {years.map((year, index) => <option value={year} key={index}>{`${year}年`}</option>)}
+                {years.map((val, index) => <option value={val.year} key={index}>{`${val.year}年（${val.wareki}）`}</option>)}
               </select>
             </div>
             <div className="mt-3">
