@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   const [select_val, setSelectVal] = useState<string>('2020');
   const [checked, setChecked] = useState<boolean>(false);
   const years = [];
-  for (let index = 2020; index > 1998; index--) {
+  for (let index = 2020; index > 1996; index--) {
     const year = {
       'year': index,
       'wareki': KyuuyoData[index.toString()]['wareki']
@@ -26,7 +26,7 @@ const Home: NextPage = () => {
   return (
     <>
       <div className="mt-10">
-        <h1 className="text-6xl font-bold">
+        <h1 className="text-6xl font-bold sm:mx-0">
           みんなの <b className="text-orange-400">給与</b>
         </h1>
         <p className="mt-3 text-2xl">
@@ -36,7 +36,7 @@ const Home: NextPage = () => {
 
       <div className="mt-6 flex max-w-5xl flex-wrap items-center justify-around sm:w-full">
         {/* Search Box */}
-        <div className="mt-6 w-3/5 rounded-xl border p-6 text-left shadow-lg">
+        <div className="mt-6 rounded-xl border p-6 text-left shadow-lg lg:w-3/5 md:w-4/5">
           {/* <h2 className="text-2xl font-bold">条件</h2> */}
           <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div className="mt-3">
@@ -69,8 +69,8 @@ const Home: NextPage = () => {
         </div>
 
         {/* Chart Box */}
-        <div className="mt-6 w-full rounded-xl border p-6 text-left my-10 shadow-lg">
-          <h2 className="text-2xl font-bold">年齢別の平均給与</h2>
+        <div className="mt-6 w-full rounded-xl border text-left my-10 shadow-lg">
+          <h2 className="text-2xl font-bold px-6 pt-6">年齢別の平均給与</h2>
           <Chart year={select_val} is_devided={checked}/>
         </div>
       </div>

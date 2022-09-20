@@ -10,6 +10,7 @@ import {
  TooltipItem
 } from "chart.js";
 import ChartDataLabels, { Context } from 'chartjs-plugin-datalabels';
+import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import KyuuyoData from "../utils/Data"
 
@@ -30,8 +31,17 @@ ChartJS.register(
 );
 
 export default function Chart({ year, is_devided }: Props): JSX.Element {
-
-  // chart option
+  const [aspectRatio, setAspectRatio] = useState(1.5);
+  useEffect(() => {
+    if (typeof window !== undefined && window.matchMedia('(max-width:639px)').matches) {
+      // Smart Phone
+      setAspectRatio(0.7);
+    } else if (typeof window !== undefined && window.matchMedia('(max-width:768px)').matches) {
+      // Tablet
+      setAspectRatio(1.2);
+    }
+  }, []);
+    // chart option
   const options = {
     layout: {padding: 50},
     responsive: true,
@@ -39,7 +49,7 @@ export default function Chart({ year, is_devided }: Props): JSX.Element {
       mode: 'index' as const,
       intersect: false,
     },
-    aspectRatio: 1.5,
+    aspectRatio: aspectRatio,
     plugins: {
       title: {
         display: true,
@@ -80,17 +90,6 @@ export default function Chart({ year, is_devided }: Props): JSX.Element {
     }
   }
 
-  // chart label
-  const labels = [
-    '19歳以下',
-    '20〜24歳', '25〜29歳',
-    '30〜34歳', '35〜39歳',
-    '40〜44歳', '45〜49歳',
-    '50〜54歳', '55〜59歳',
-    '60〜64歳', '65〜69歳',
-    '70歳以上'
-  ];
-
   // chart datas
   let datasets = [];
   if (is_devided) {
@@ -122,6 +121,29 @@ export default function Chart({ year, is_devided }: Props): JSX.Element {
         backgroundColor: 'rgba(251, 146, 60, 0.7)',
         borderWidth: 2
       }
+    ];
+  }
+
+  // chart label
+  let labels = [];
+  if (Number(year) <= 2006) {
+    labels = [
+      '19歳以下',
+      '20〜24歳', '25〜29歳',
+      '30〜34歳', '35〜39歳',
+      '40〜44歳', '45〜49歳',
+      '50〜54歳', '55〜59歳',
+      '60歳以上',
+    ];
+  } else {
+    labels = [
+      '19歳以下',
+      '20〜24歳', '25〜29歳',
+      '30〜34歳', '35〜39歳',
+      '40〜44歳', '45〜49歳',
+      '50〜54歳', '55〜59歳',
+      '60〜64歳', '65〜69歳',
+      '70歳以上'
     ];
   }
 
