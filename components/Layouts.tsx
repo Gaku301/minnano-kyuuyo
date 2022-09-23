@@ -1,6 +1,7 @@
 import { ReactElement, ReactNode } from "react"
 import Head from "next/head"
 import Footer from "./Footer"
+import { GoogleAnalytics } from "./GoogleAnalytics";
 
 type Props = {
   children?: ReactNode;
@@ -12,6 +13,7 @@ const Layout = ({ children }: Props): ReactElement => {
   return (
     <>
       <Head>
+        <GoogleAnalytics />
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
