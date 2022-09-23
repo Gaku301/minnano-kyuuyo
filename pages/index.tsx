@@ -34,10 +34,24 @@ const Home: NextPage = () => {
         </p>
       </div>
 
-      <div className="mt-6 flex max-w-5xl flex-wrap items-center justify-around sm:w-full">
+      <div className="mt-10 flex max-w-5xl flex-wrap items-center justify-around sm:w-full">
+        {/* Description */}
+        <div className="my-3 border-y-2 p-6 w-full text-center">
+          <p className="items-center">
+            <strong className="text-orange-400 font-extrabold text-lg">※ </strong>
+            本サイトは国税庁の「
+            <a 
+              href="https://www.nta.go.jp/publication/statistics/kokuzeicho/minkan/top.htm"
+              target="_blank"
+              rel="noreferrer"
+              className="underline decoration-2 decoration-orange-400 hover:text-orange-400"
+            >民間給与実態統計調査</a>
+            」のデータを基に作成しています。
+          </p>
+        </div>
+
         {/* Search Box */}
-        <div className="mt-6 rounded-xl border p-6 text-left shadow-lg lg:w-3/5 md:w-4/5">
-          {/* <h2 className="text-2xl font-bold">条件</h2> */}
+        <div className="mt-10 rounded-xl border p-6 text-left shadow-lg lg:w-3/5 md:w-4/5">
           <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div className="mt-3">
               <label htmlFor="year_select" className="block mb-1 font-medium">【 西暦 】</label>

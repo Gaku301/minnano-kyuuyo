@@ -29,6 +29,7 @@ const Layout = ({ children }: Props): ReactElement => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@takane_x" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon-precomposed" href="/favicon.ico" />
       </Head>
       <div className="flex min-h-screen flex-col items-center justify-center py-2 font-kiwi bg-gray-100">
         <main className="flex w-full flex-1 flex-col items-center justify-center md:px-20 sm:px-5 text-center">
