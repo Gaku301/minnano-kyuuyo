@@ -6,7 +6,8 @@ import {
  BarElement,
  Title,
  Tooltip,
- Legend
+ Legend,
+ TooltipItem
 } from "chart.js";
 import ChartDataLabels, { Context } from 'chartjs-plugin-datalabels';
 import { useEffect, useState } from "react";
@@ -64,7 +65,7 @@ export default function Chart({ year, is_devided }: Props): JSX.Element {
       },
       tooltip: {
         callbacks: {
-          label: (context: Context) => {
+          label: (context: TooltipItem<"bar">) => {
             let label = context.dataset.label || "";
             let data = context.dataset.data[context.dataIndex] || "";
             return `${label}: ${data}万円`;
@@ -72,7 +73,7 @@ export default function Chart({ year, is_devided }: Props): JSX.Element {
         }
       }
     },
-    scales: {
+    scale: {
       x: {
         title: {
           display: false,
