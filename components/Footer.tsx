@@ -1,7 +1,15 @@
 import React, { ReactElement } from "react";
 import Link from "next/link";
+import * as gtag from "../lib/gtag"
 
 const Footer = (): ReactElement => {
+  const pageClicked = () => {
+    gtag.event({
+      action: 'click',
+      category: 'other',
+      label: 'page_clicked',
+    })
+  }
   return (
     <footer className="block py-4 h-24 w-full">
       <div className="container mx-auto px-4">
@@ -26,6 +34,7 @@ const Footer = (): ReactElement => {
                 <Link href="/">
                   <a
                     className="text-sm font-semibold block py-1 px-3 underline decoration-2 decoration-orange-400 hover:text-orange-400"
+                    onClick={pageClicked}
                   >Top</a>
                 </Link>
               </li>
@@ -35,6 +44,7 @@ const Footer = (): ReactElement => {
                   className="text-sm font-semibold block py-1 px-3 underline decoration-2 decoration-orange-400 hover:text-orange-400"
                   target="_blank"
                   rel="noreferrer"
+                  onClick={pageClicked}
                 >
                   Contact
                 </a>
@@ -43,6 +53,7 @@ const Footer = (): ReactElement => {
                 <Link href="/privacy-policy">
                   <a
                     className="text-sm font-semibold block py-1 px-3 underline decoration-2 decoration-orange-400 hover:text-orange-400"
+                    onClick={pageClicked}
                   >Privacy Policy</a>
                 </Link>
               </li>
