@@ -68,12 +68,13 @@ export const GoogleAnalytics = (): ReactElement => {
           id="ga"
           defer
           dangerouslySetInnerHTML={{
-              __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());    
-              gtag('config', '${GA_ID}');
-              `,
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());    
+            gtag('config', '${GA_ID}', {
+              page_path: window.location.pathname,
+            });`,
           }}
           strategy="afterInteractive"
         />
