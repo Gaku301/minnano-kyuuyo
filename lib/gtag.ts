@@ -10,7 +10,10 @@ type ClickEvent = {
   label: string
 }
 
-export type Event = ContactEvent | ClickEvent
+export type Event = (ContactEvent | ClickEvent) & {
+  label?: string | number | boolean,
+  value?: string
+}
 
 
 export const GA_ID = process.env.NEXT_PUBLIC_GA_ID || '';
@@ -24,11 +27,12 @@ export const pageView = (path: string) => {
 }
 
 // GAイベントを発火させる
-export const event = ({ action, category, label }: Event) => {
+export const event = ({ action, category, label, value='' }: Event) => {
   if (GA_ID === '') return;
 
   window.gtag('event', action, {
     event_category: category,
-    event_label: JSON.stringify(label)
+    event_label: label ? JSON.stringify(label) : '',
+    value
   });
 }
