@@ -6,7 +6,7 @@ export const usePageView = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (gtag.GA_ID === '') return;
+    if (!gtag.existsGaId) return;
 
     const handleRouteChange = (path: string) => {
       gtag.pageView(path);

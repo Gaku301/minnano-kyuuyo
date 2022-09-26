@@ -1,6 +1,6 @@
 type ContactEvent = {
   action: 'submit_form'
-  category: 'caontact'
+  category: 'contact'
   label: string
 }
 
@@ -10,29 +10,26 @@ type ClickEvent = {
   label: string
 }
 
-export type Event = (ContactEvent | ClickEvent) & {
-  label?: string | number | boolean,
-  value?: string
-}
-
+export type Event = ContactEvent | ClickEvent;
 
 export const GA_ID = process.env.NEXT_PUBLIC_GA_ID || '';
 
+// IDが取得できない場合
+export const existsGaId = GA_ID !== '';
+
 // PVを測定する
 export const pageView = (path: string) => {
-  if (GA_ID === '') return;
+  if (!existsGaId) return;
   window.gtag('config', GA_ID, {
     page_path: path
   });
 }
 
 // GAイベントを発火させる
-export const event = ({ action, category, label, value='' }: Event) => {
-  if (GA_ID === '') return;
-
+export const event = ({ action, category, label }: Event) => {
+  if (!existsGaId) return;
   window.gtag('event', action, {
     event_category: category,
-    event_label: label ? JSON.stringify(label) : '',
-    value
+    event_label: JSON.stringify(label),
   });
 }
