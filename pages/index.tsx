@@ -4,10 +4,10 @@ import Chart from "../components/Chart";
 import KyuuyoData from "../utils/Data";
 
 const Home: NextPage = () => {
-  const [select_val, setSelectVal] = useState<string>('2020');
+  const [select_val, setSelectVal] = useState<string>('2021');
   const [checked, setChecked] = useState<boolean>(false);
   const years = [];
-  for (let index = 2020; index > 1996; index--) {
+  for (let index = 2021; index > 1996; index--) {
     const year = {
       'year': index,
       'wareki': KyuuyoData[index.toString()]['wareki']
