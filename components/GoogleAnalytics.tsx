@@ -19,12 +19,6 @@ export const GoogleAnalytics = (): ReactElement => {
             gtag('js', new Date());    
             gtag('config', '${GA_ID}');
         `}</Script>
-        {/* Adsense */}
-        <Script 
-          async 
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4739003769773423"
-          crossOrigin="anonymous"
-        ></Script>
       </>
     )}
     </>
