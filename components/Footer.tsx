@@ -24,7 +24,7 @@ const Footer = (): ReactElement => {
                 target="_blank"
                 rel="noreferrer"
               >
-                Gakux
+                GAKUX
               </a>
             </div>
           </div>

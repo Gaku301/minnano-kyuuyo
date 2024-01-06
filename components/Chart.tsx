@@ -32,10 +32,12 @@ ChartJS.register(
 
 export default function Chart({ year, is_devided }: Props): JSX.Element {
   const [aspectRatio, setAspectRatio] = useState(1.5);
+  const [datalabelDisplay, setDataLabelDisplay] = useState(true);
   useEffect(() => {
     if (typeof window !== undefined && window.matchMedia('(max-width:639px)').matches) {
       // Smart Phone
-      setAspectRatio(0.7);
+      setAspectRatio(0.9);
+      setDataLabelDisplay(false);
     } else if (typeof window !== undefined && window.matchMedia('(max-width:768px)').matches) {
       // Tablet
       setAspectRatio(1.2);
@@ -57,6 +59,7 @@ export default function Chart({ year, is_devided }: Props): JSX.Element {
         font: {size: 20}
       },
       datalabels: {
+        display: datalabelDisplay,
         align: 'top' as const,
         font: {size: 13},
         formatter: (value: Number ,context: Context) => {

@@ -1,6 +1,7 @@
 import { ReactElement, ReactNode } from "react"
 import Head from "next/head"
 import Footer from "./Footer"
+// import ScriptGoogleAd from "./ScriptGoogleAd";
 
 type Props = {
   children?: ReactNode;
@@ -34,6 +35,7 @@ const Layout = ({ children }: Props): ReactElement => {
           {children}
         </main>
         <Footer /> 
+        {/* <ScriptGoogleAd /> */}
       </div>
     </>
   );
